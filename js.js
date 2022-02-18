@@ -1,5 +1,6 @@
 let points = document.getElementsByClassName('select-points');
 let exOrCircle = false;
+// let playWith
 let arrWin1 = [];
 let arrWin2 = [];
 let arrWin3 = [];
@@ -8,6 +9,7 @@ let arrWin5 = [];
 let arrWin6 = [];
 let arrWin7 = [];
 let arrWin8 = [];
+let arrAllPoints = [];
 document.getElementById('playerOne').addEventListener('keyup', () => {
     document.getElementById('namePlayerOne').innerText = `${document.getElementById('playerOne').value}`;
     startGame();
@@ -17,6 +19,13 @@ document.getElementById('playerTwo').addEventListener('keyup', () => {
     startGame();
 });
 function startGame(){
+    // let btnComputer = document.getElementById('playComputer');
+    // btnComputer.addEventListener('click', () => {
+
+    // })
+
+
+
     if (document.getElementById('namePlayerOne').innerText.length > 0 && document.getElementById('namePlayerTwo').innerText.length > 0){
         let btn = document.getElementById('btn');
         btn.classList.add('show');
@@ -31,14 +40,12 @@ function startGame(){
     function showTable(){
         let playerOne = document.getElementById('playerOne').value;
         let playerTwo = document.getElementById('playerTwo').value;
-        console.log(playerOne);
         for (let i = 0; i < points.length; i++){
             let pointsId = parseInt(document.getElementById(`${i + 1}`).id);
             points[i].addEventListener('click', (e) => {
                 let nameClass = e.target.classList;
                 // CONDICIONAL PARA NO CAMBIAR LA EQUIS POR UN CIRCULO O VICEVERSA
                 if(nameClass.length == 2){
-        
                     // CONDICIONIONAL PARA MARCAR EQUIS O CIRCULO
                     if (exOrCircle == false){
                         points[i].classList.add('circle');
@@ -61,30 +68,37 @@ function startGame(){
                     };
                     // PUSH DE LINEAS DE PUNTOS
                     if(pointsId <= 3){
-                        arrWin1.push(nameClass[2])
+                        arrWin1.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2])
                     };
                     if(pointsId >= 4 && pointsId <= 6){
-                        arrWin2.push(nameClass[2])
+                        arrWin2.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2])
                     };
                     if(pointsId >= 7 && pointsId <= 9){
-                        arrWin3.push(nameClass[2])
+                        arrWin3.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2]);
                     };
                     if(pointsId == 1 ||pointsId == 4 ||pointsId == 7){
-                        arrWin4.push(nameClass[2])
+                        arrWin4.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2]);
                     };
                     if(pointsId == 2 ||pointsId == 5 ||pointsId == 8){
-                        arrWin5.push(nameClass[2])
+                        arrWin5.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2]);
                     };
                     if(pointsId == 3 ||pointsId == 6 ||pointsId == 9){
-                        arrWin6.push(nameClass[2])
+                        arrWin6.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2]);
                     };
                     if(pointsId == 1 ||pointsId == 5 ||pointsId == 9){
-                        arrWin7.push(nameClass[2])
+                        arrWin7.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2]);
                     };
                     if(pointsId == 3 ||pointsId == 5 ||pointsId == 7){
-                        arrWin8.push(nameClass[2])
+                        arrWin8.push(nameClass[2]);
+                        arrAllPoints.push(nameClass[2]);
                     };
-                    console.log(arrWin4);
                     //CONDICIONES PARA GANAR
                     if (arrWin1[0] == 'circle' && arrWin1[1] == 'circle' && arrWin1[2] == 'circle' || arrWin1[0] == 'ex' && arrWin1[1] == 'ex' && arrWin1[2] == 'ex'){
                         console.log("ganaste en linea 1");
@@ -190,6 +204,11 @@ function startGame(){
                                 location.reload(true)
                             }, 100)
                         }
+                    }else if(arrAllPoints.length == 24){ //EMPATE
+                        setTimeout(() => {
+                            alert('Empate');
+                            location.reload(true);
+                        }, 100)
                     }
                 }
             });
