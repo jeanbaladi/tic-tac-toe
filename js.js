@@ -392,11 +392,18 @@ function startGame(){
                                 location.reload(true)
                             }, 100)
                         }
-                    }else if(arrAllPoints.length == 24 || arrFull.length == 5){ //EMPATE
+                    }else if(arrAllPoints.length == 24){ //EMPATE
                         setTimeout(() => {
                             alert('Empate');
                             location.reload(true);
                         }, 100)
+                    }else if(playWithComputer == true){
+                        if (arrFull.length == 5){
+                            setTimeout(() => {
+                                alert('Empate');
+                                location.reload(true);
+                            }, 100)
+                        }
                     }
                 }
                 setTimeout(() => {
